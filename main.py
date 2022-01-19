@@ -9,8 +9,8 @@ if __name__ == '__main__':
         parser = myparser.parser
         text = f.read()
         ast = parser.parse(text, lexer=scanner.lexer)
-        # if ast is not None:
-        #     ast.printTree()
+        if ast is not None:
+            ast.printTree()
         if not myparser.error:
             type_checker = TypeChecker()
             type_checker.visit(ast)

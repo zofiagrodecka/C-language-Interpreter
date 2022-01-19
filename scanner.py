@@ -62,7 +62,7 @@ t_GREATER_EQUAL = r'\>='
 t_NOT_EQUAL = r'\!='
 t_EQUAL = r'\=='
 
-t_CHAR = r'\'([a-zA-Z_0-9])\''
+t_CHAR = r'\'([a-zA-Z_0-9\W])\''
 t_STRING = r'\"([^\\\n]|(\\.))*?\"'
 
 

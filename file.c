@@ -44,7 +44,7 @@ int main(){
     int aaaaab = 10;
     aaaaab /= 10;
 
-    char c = 'x';
+    char c = '!';
     bool always_true = true;
     printf("Hello World!\n");
     printf("Hej %s\n", str);
