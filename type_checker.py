@@ -129,7 +129,6 @@ class TypeChecker(NodeVisitor):
     def visit_AssignInstructionTab(self, node):
         left_type = self.visit(node.id)
         tab_name = node.id.value
-        index = node.index
         right_type = self.visit(node.expr)
         index_type = self.visit(node.index)
         if index_type != 'int':
@@ -138,19 +137,14 @@ class TypeChecker(NodeVisitor):
             self.print_error(node.line, "Undeclared variable: " + tab_name)
         elif left_type != right_type:
             self.print_error(node.line, "Incorect types: " + left_type + " and " + right_type)
-        # elif self.arrays_sizes.get(tab_name, 0) < index or index < 0:
-        #     self.print_error(node.line, "Index out of range")
 
     def visit_AssignInstructionTabDoubleOp(self, node):
         tab_name = node.id.value
-        index = node.index
         index_type = self.visit(node.index)
         if index_type != 'int':
             self.print_error(node.line, "Incorrect type: " + index_type)
         elif self.symbols.get(tab_name) is None:
             self.print_error(node.line, "Undeclared variable: " + tab_name)
-        # elif self.arrays_sizes.get(tab_name, 0) < index or index < 0:
-        #     self.print_error(node.line, "Index out of range")
 
     def visit_IfInstruction(self, node):
         self.visit(node.expr)
@@ -199,7 +193,7 @@ class TypeChecker(NodeVisitor):
         elif self.fun_type != 'void':
             self.print_error(node.line, "Incorrect return type")
 
-    def visit_ReturnInstructionExpression(self, node):  # Jak sprawdzic typ funkcji?
+    def visit_ReturnInstructionExpression(self, node):
         return_type = self.visit(node.expr)
         if self.depth <= 0:
             self.print_error(node.line, "return outside function")
@@ -263,8 +257,6 @@ class TypeChecker(NodeVisitor):
         index_type = self.visit(node.index)
         if index_type != 'int':
             self.print_error(node.line, "Incorrect type: " + index_type)
-        # elif self.arrays_sizes.get(tab_name, 0) < index or index < 0:
-        #     self.print_error(node.line, "Index out of range")
         return self.symbols.get(tab_name)
 
     def visit_IdsListTab(self, node):

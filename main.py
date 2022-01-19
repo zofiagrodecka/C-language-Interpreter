@@ -11,7 +11,8 @@ if __name__ == '__main__':
         ast = parser.parse(text, lexer=scanner.lexer)
         # if ast is not None:
         #     ast.printTree()
-        type_checker = TypeChecker()
-        type_checker.visit(ast)
-        if not type_checker.error:
-            ast.accept(Interpreter())
+        if not myparser.error:
+            type_checker = TypeChecker()
+            type_checker.visit(ast)
+            if not type_checker.error:
+                ast.accept(Interpreter())

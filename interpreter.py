@@ -26,7 +26,6 @@ class Interpreter(object):
     def visit(self, node):
         name = node.id.value
         size = node.size.accept(self)
-        print("TAB:", name)
         if node.type == 'int':
             self.memory_stack.insert(name, [0 for _ in range(size)])
         elif node.type == 'float':

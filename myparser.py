@@ -13,12 +13,16 @@ precedence = (
     ('left', 'LESSER_THAN', 'GREATER_THAN', 'LESSER_EQUAL', 'GREATER_EQUAL', 'NOT_EQUAL', 'EQUAL')
 )
 
+error = False
+
 
 def p_error(p):
     if p:
         print("Syntax error at line {0}: Token({1}, '{2}')".format(p.lineno, p.type, p.value))
     else:
         print("Unexpected end of input")
+    global error
+    error = True
 
 
 def p_program(p):
@@ -226,11 +230,6 @@ def p_operations(p):
 def p_parentheses(p):
     """expression : '(' expression ')'"""
     p[0] = p[2]
-
-
-# def p_minus_expression(p):
-#     """expression : '-' expression %prec UMINUS"""
-#     p[0] = p[2]
 
 
 def p_variable(p):
