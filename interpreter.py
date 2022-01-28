@@ -314,6 +314,8 @@ class Interpreter(object):
                 return left / right
             else:
                 return left // right
+        elif node.op == '%':
+            return left % right
         elif node.op == '<':
             return left < right
         elif node.op == '>':

@@ -10,6 +10,7 @@ precedence = (
     ("right", '=', 'PLUSASSIGN', 'SUBASSIGN', 'MULASSIGN', 'DIVASSIGN', 'PLUSPLUS', 'MINUSMINUS'),
     ("left", '+', '-'),
     ("left", '*', '/'),
+    ("left", '%'),
     ('left', 'LESSER_THAN', 'GREATER_THAN', 'LESSER_EQUAL', 'GREATER_EQUAL', 'NOT_EQUAL', 'EQUAL')
 )
 
@@ -223,7 +224,8 @@ def p_operations(p):
     """expression : expression '+' expression
                   | expression '-' expression
                   | expression '*' expression
-                  | expression '/' expression"""
+                  | expression '/' expression
+                  | expression '%' expression"""
     p[0] = ast.Expression(p[1], p[2], p[3], p.lineno(2))
 
 
@@ -265,6 +267,11 @@ def p_expression_string(p):
 def p_expression_id(p):
     """expression : ID"""
     p[0] = ast.ID(p[1], p.lineno(1))
+
+
+def p_tab_expr(p):
+    """bool_expr : ID '[' index ']'"""
+    p[0] = ast.TabID(ast.ID(p[1], p.lineno(2)), p[3], p.lineno(2))
 
 
 def p_functions_1(p):

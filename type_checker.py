@@ -28,48 +28,41 @@ class TypeChecker(NodeVisitor):
 
         self.ttype['+']['int']['int'] = 'int'
         self.ttype['+']['float']['float'] = 'float'
-        self.ttype['+']['double']['double'] = 'double'
 
         self.ttype['-']['int']['int'] = 'int'
         self.ttype['-']['float']['float'] = 'float'
-        self.ttype['-']['double']['double'] = 'double'
 
         self.ttype['*']['int']['int'] = 'int'
         self.ttype['*']['float']['float'] = 'float'
-        self.ttype['*']['double']['double'] = 'double'
 
         self.ttype['/']['int']['int'] = 'int'
         self.ttype['/']['float']['float'] = 'float'
-        self.ttype['/']['double']['double'] = 'double'
+
+        self.ttype['%']['int']['int'] = 'int'
+        self.ttype['%']['float']['float'] = 'float'
 
         self.ttype['==']['int']['int'] = 'int'
         self.ttype['==']['float']['float'] = 'float'
-        self.ttype['==']['double']['double'] = 'double'
         self.ttype['==']['bool']['bool'] = 'bool'
 
         self.ttype['!=']['int']['int'] = 'int'
         self.ttype['!=']['float']['float'] = 'float'
-        self.ttype['!=']['double']['double'] = 'double'
         self.ttype['!=']['bool']['bool'] = 'bool'
 
         self.ttype['>']['int']['int'] = 'int'
         self.ttype['>']['float']['float'] = 'float'
-        self.ttype['>']['double']['double'] = 'double'
         self.ttype['>']['bool']['bool'] = 'bool'
 
         self.ttype['<']['int']['int'] = 'int'
         self.ttype['<']['float']['float'] = 'float'
-        self.ttype['<']['double']['double'] = 'double'
         self.ttype['<']['bool']['bool'] = 'bool'
 
         self.ttype['<=']['int']['int'] = 'int'
         self.ttype['<=']['float']['float'] = 'float'
-        self.ttype['<=']['double']['double'] = 'double'
         self.ttype['<=']['bool']['bool'] = 'bool'
 
         self.ttype['>=']['int']['int'] = 'int'
         self.ttype['>=']['float']['float'] = 'float'
-        self.ttype['>=']['double']['double'] = 'double'
         self.ttype['>=']['bool']['bool'] = 'bool'
 
     def visit_DoubleInstruction(self, node):
